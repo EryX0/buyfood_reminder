@@ -18,12 +18,14 @@ async def sendMsg(context: CallbackContext):
     # Send the message
     await context.bot.send_message(chat_id=chat_id, text=text)
     print("Notified Users")
+    context.bot.stop()
+    os._exit(0)
 
     
 def main() -> None:
     """Run the bot."""
     # Create the Application and pass it your bot's token.
-    application = Application.builder().token("env_vars['BOT_TOKEN']").build()
+    application = Application.builder().token(env_vars['BOT_TOKEN']).build()
     application.job_queue.run_once(sendMsg, 15)
     application.run_polling(drop_pending_updates=True)
 if __name__ == "__main__":
