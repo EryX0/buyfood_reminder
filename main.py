@@ -18,7 +18,6 @@ async def sendMsg(context: CallbackContext):
     # Send the message
     await context.bot.send_message(chat_id=chat_id, text=text)
     print("Notified Users")
-    context.bot.stop()
     os._exit(0)
 
     
